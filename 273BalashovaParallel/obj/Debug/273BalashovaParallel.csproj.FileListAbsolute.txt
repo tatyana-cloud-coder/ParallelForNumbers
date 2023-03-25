@@ -1,0 +1,7 @@
+C:\Users\Tatya\OneDrive\Рабочий стол\параллелки\273BalashovaParallel\273BalashovaParallel\bin\Debug\273BalashovaParallel.exe.config
+C:\Users\Tatya\OneDrive\Рабочий стол\параллелки\273BalashovaParallel\273BalashovaParallel\bin\Debug\273BalashovaParallel.exe
+C:\Users\Tatya\OneDrive\Рабочий стол\параллелки\273BalashovaParallel\273BalashovaParallel\bin\Debug\273BalashovaParallel.pdb
+C:\Users\Tatya\OneDrive\Рабочий стол\параллелки\273BalashovaParallel\273BalashovaParallel\obj\Debug\273BalashovaParallel.csproj.AssemblyReference.cache
+C:\Users\Tatya\OneDrive\Рабочий стол\параллелки\273BalashovaParallel\273BalashovaParallel\obj\Debug\273BalashovaParallel.csproj.CoreCompileInputs.cache
+C:\Users\Tatya\OneDrive\Рабочий стол\параллелки\273BalashovaParallel\273BalashovaParallel\obj\Debug\273BalashovaParallel.exe
+C:\Users\Tatya\OneDrive\Рабочий стол\параллелки\273BalashovaParallel\273BalashovaParallel\obj\Debug\273BalashovaParallel.pdb
