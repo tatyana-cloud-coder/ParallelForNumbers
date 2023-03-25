@@ -17,73 +17,63 @@ namespace _273BalashovaParallel
             var collection = text.Split(' ');
             var infs = new List<int>();
             var sups = new List<int>();
-            var isValid = true; 
+            var isValid = true;
 
-            Console.WriteLine("Количество потоков:");
-            if (int.TryParse (Console.ReadLine(), out var n))
+            while (true)
             {
+                Console.WriteLine("Количество потоков:");
+                if (!int.TryParse(Console.ReadLine(), out var n))
+                {
+                    Console.WriteLine("Некорректное количество потоков. Попробуйте еще раз!");
+                    continue;
+                }
                 for (int i = 0; i < n; i++)
                 {
                     Console.WriteLine("Нижняя граница диапазона:");
-
-                    if (int.TryParse(Console.ReadLine(), out var inf))
-                    {
-                        infs.Add(inf); 
-                        Console.WriteLine("Верхняя граница диапазона:");
-
-
-                        if (int.TryParse(Console.ReadLine(), out var sup))
-                        {
-                            sups.Add(sup);
-                        } else
-                        {
-                            Console.WriteLine("Некорректная верхняя граница диапазона");
-                            isValid = false;
-                            break;
-
-                        }
-                           
-                    } else
+                    if (!int.TryParse(Console.ReadLine(), out var inf))
                     {
                         Console.WriteLine("Некорректная нижняя граница диапазона");
                         isValid = false;
                         break;
                     }
-                }
-
-                if (isValid)
-                {
-                    
-                    ThreadPocket.Numbers = collection;
-                    var threads = new List<Thread>();
-                    for (int i = 0; i<n; i++)
+                    infs.Add(inf);
+                    Console.WriteLine("Верхняя граница диапазона:");
+                    if (!int.TryParse(Console.ReadLine(), out var sup))
                     {
-                        var pocket = new ThreadPocket();
-                        threads.Add(new Thread(new ParameterizedThreadStart(ProccessNumbers)));
-                        pocket.Inf = infs[i];
-                        pocket.Sup = sups[i];
-                        threads[i].Start(pocket);
+                        Console.WriteLine("Некорректная верхняя граница диапазона");
+                        isValid = false;
+                        break;
                     }
-                    WaitAll(threads);
+                    sups.Add(sup);
                 }
 
-            } else
-            {
-                Console.WriteLine("Некорректное количество потоков");
+                if (!isValid)
+                {
+                    Console.WriteLine("Попробуйте еще раз!");
+                    continue;
+                }
+                ThreadPocket.Numbers = collection;
+                var threads = new List<Thread>();
+                for (int i = 0; i < n; i++)
+                {
+                    var pocket = new ThreadPocket();
+                    threads.Add(new Thread(new ParameterizedThreadStart(ProccessNumbers)));
+                    pocket.Inf = infs[i];
+                    pocket.Sup = sups[i];
+                    threads[i].Start(pocket);
+                }
+                WaitAll(threads);
             }
 
 
             Console.WriteLine();
             Console.WriteLine("Результаты:");
             Console.WriteLine($" {"Число",-10} {"Позиция",-10} {"Номер потока",-3}");
-            foreach (var res in _results.OrderBy(x => x.Number).ThenBy(x=>x.Position))
+            foreach (var res in _results.OrderBy(x => x.Number).ThenBy(x => x.Position))
             {
                 Console.WriteLine($" {res.Number,-10} {res.Position,-10} {res.ThreadNumber,-3}");
             }
-            Console.ReadKey();
-          
         }
-
         static void WriteToFile (string fileName)
         {
             Random rnd = new Random();
